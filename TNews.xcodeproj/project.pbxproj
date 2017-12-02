@@ -8,22 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		5086AFA11FD1ED830088A5FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFA01FD1ED830088A5FD /* AppDelegate.swift */; };
-		5086AFA31FD1ED830088A5FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFA21FD1ED830088A5FD /* ViewController.swift */; };
+		5086AFA31FD1ED830088A5FD /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFA21FD1ED830088A5FD /* NewsListViewController.swift */; };
 		5086AFA61FD1ED830088A5FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5086AFA41FD1ED830088A5FD /* Main.storyboard */; };
 		5086AFA91FD1ED830088A5FD /* TNews.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFA71FD1ED830088A5FD /* TNews.xcdatamodeld */; };
 		5086AFAB1FD1ED830088A5FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5086AFAA1FD1ED830088A5FD /* Assets.xcassets */; };
 		5086AFAE1FD1ED830088A5FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5086AFAC1FD1ED830088A5FD /* LaunchScreen.storyboard */; };
+		5086AFB61FD2BF640088A5FD /* DataDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFB51FD2BF640088A5FD /* DataDownloader.swift */; };
+		5086AFB81FD2DEBE0088A5FD /* News+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFB71FD2DEBE0088A5FD /* News+CoreData.swift */; };
+		5086AFBA1FD2EA540088A5FD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFB91FD2EA540088A5FD /* CoreDataStack.swift */; };
+		5086AFBC1FD314FE0088A5FD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFBB1FD314FE0088A5FD /* StorageManager.swift */; };
+		5086AFBE1FD318CD0088A5FD /* NewsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFBD1FD318CD0088A5FD /* NewsDataProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5086AF9D1FD1ED830088A5FD /* TNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5086AFA01FD1ED830088A5FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5086AFA21FD1ED830088A5FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5086AFA21FD1ED830088A5FD /* NewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewController.swift; sourceTree = "<group>"; };
 		5086AFA51FD1ED830088A5FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5086AFA81FD1ED830088A5FD /* TNews.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TNews.xcdatamodel; sourceTree = "<group>"; };
 		5086AFAA1FD1ED830088A5FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5086AFAD1FD1ED830088A5FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5086AFAF1FD1ED830088A5FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5086AFB51FD2BF640088A5FD /* DataDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDownloader.swift; sourceTree = "<group>"; };
+		5086AFB71FD2DEBE0088A5FD /* News+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+CoreData.swift"; sourceTree = "<group>"; };
+		5086AFB91FD2EA540088A5FD /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		5086AFBB1FD314FE0088A5FD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		5086AFBD1FD318CD0088A5FD /* NewsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +67,17 @@
 			isa = PBXGroup;
 			children = (
 				5086AFA01FD1ED830088A5FD /* AppDelegate.swift */,
-				5086AFA21FD1ED830088A5FD /* ViewController.swift */,
+				5086AFBB1FD314FE0088A5FD /* StorageManager.swift */,
+				5086AFA21FD1ED830088A5FD /* NewsListViewController.swift */,
+				5086AFBD1FD318CD0088A5FD /* NewsDataProvider.swift */,
+				5086AFB51FD2BF640088A5FD /* DataDownloader.swift */,
 				5086AFA41FD1ED830088A5FD /* Main.storyboard */,
 				5086AFAA1FD1ED830088A5FD /* Assets.xcassets */,
 				5086AFAC1FD1ED830088A5FD /* LaunchScreen.storyboard */,
 				5086AFAF1FD1ED830088A5FD /* Info.plist */,
 				5086AFA71FD1ED830088A5FD /* TNews.xcdatamodeld */,
+				5086AFB71FD2DEBE0088A5FD /* News+CoreData.swift */,
+				5086AFB91FD2EA540088A5FD /* CoreDataStack.swift */,
 			);
 			path = TNews;
 			sourceTree = "<group>";
@@ -139,8 +154,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5086AFB61FD2BF640088A5FD /* DataDownloader.swift in Sources */,
 				5086AFA91FD1ED830088A5FD /* TNews.xcdatamodeld in Sources */,
-				5086AFA31FD1ED830088A5FD /* ViewController.swift in Sources */,
+				5086AFA31FD1ED830088A5FD /* NewsListViewController.swift in Sources */,
+				5086AFBE1FD318CD0088A5FD /* NewsDataProvider.swift in Sources */,
+				5086AFBC1FD314FE0088A5FD /* StorageManager.swift in Sources */,
+				5086AFBA1FD2EA540088A5FD /* CoreDataStack.swift in Sources */,
+				5086AFB81FD2DEBE0088A5FD /* News+CoreData.swift in Sources */,
 				5086AFA11FD1ED830088A5FD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
