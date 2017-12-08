@@ -24,6 +24,13 @@ class NewsDataProvider:NSObject {
         
         super.init()
         fetchedResultsController.delegate = self
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print("Error fetching: \(error)")
+        }
+        
     }
 }
 

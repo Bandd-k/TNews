@@ -9,52 +9,100 @@
 import UIKit
 
 class NewsListViewController: UIViewController {
-
-    @IBOutlet weak var newsTableView: UITableView!
-
-    var downloader: DataDownloader?
+    @IBOutlet weak var placeHolderText: UILabel!
     
-    var dataProvider: NewsDataProvider?
+    @IBOutlet weak var placeHolder: UIImageView!
+    
+    @IBOutlet weak var newsTableView: UITableView!
+    private let refreshControl = UIRefreshControl()
+    var mainModel: IMainModel!
+    let downloadOffset = 5
     override func viewDidLoad() {
         super.viewDidLoad()
-        let stack = CoreDataStack()
-        dataProvider = NewsDataProvider(tableView: newsTableView,coreDataStack: stack)
-        downloader = DataDownloader(coreDataStack: stack)
+        mainModel = MainModel(tableView: newsTableView)
         newsTableView.dataSource = self
         newsTableView.delegate = self
-        do {
-            try dataProvider?.fetchedResultsController.performFetch()
-        } catch {
-            print("Error fetching: \(error)")
+        mainModel.delegate = self
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            newsTableView.refreshControl = refreshControl
+        } else {
+            newsTableView.addSubview(refreshControl)
         }
-        downloader?.downloadMore()
-        // Do any additional setup after loading the view, typically from a nib.
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Looking for something new", attributes: nil)
+    }
+    
+    @objc private func refreshData(){
+        mainModel.refresh()
     }
 
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? NewsListTableViewCell {
+            let contentViewController = segue.destination as! ContentViewController
+            if let news = cell.news {
+                contentViewController.news = news
+                mainModel.incrementCount(id: news.id!)
+                mainModel.loadContent(id: news.id!,completion: contentViewController.updateContent)
+            }
+        }
+     }
+
+}
+
+// MARK: - IMainModelDelegate
+
+extension NewsListViewController: IMainModelDelegate {
+    func show(error message: String) {
+        let alert = UIAlertController(title: "Упс, проблема", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ок", style: .default) { action in
+            // perhaps use action.title here
+        })
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    
+    func stopRefresh(){
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension NewsListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        
-        guard let frc = dataProvider?.fetchedResultsController, let sectionsCount =
-            frc.sections?.count else {
-                return 0
-        }
-        return sectionsCount
+        return 1
+//        guard let frc = dataProvider?.fetchedResultsController, let sectionsCount =
+//            frc.sections?.count else {
+//                return 0
+//        }
+//        return sectionsCount
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let frc = dataProvider?.fetchedResultsController, let sections = frc.sections else {
-            return 0
+        print(mainModel.numberOfElements)
+        if  mainModel.numberOfElements == 0 {
+            placeHolder.isHidden = false
+            placeHolderText.isHidden = false
+            newsTableView.separatorStyle = .none
         }
-        return sections[section].numberOfObjects
+        else {
+            placeHolder.isHidden = true
+            newsTableView.separatorStyle = .singleLine
+            placeHolderText.isHidden = true
+        }
+        return mainModel.numberOfElements
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell")!
-        if let news = dataProvider?.fetchedResultsController.object(at: indexPath) {
-            cell.textLabel?.text = news.text
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsListTableViewCell
+        if let news = mainModel?.object(at: indexPath) {
+            cell.configure(from: news)
         }
         return cell
         
@@ -62,15 +110,22 @@ extension NewsListViewController: UITableViewDataSource {
 
 }
 
-// MARK: - UITableViewDataSource
+// MARK: - UITableViewDelegate
 extension NewsListViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let frc = dataProvider?.fetchedResultsController, let sections = frc.sections else {
-            return
+
+        if mainModel.numberOfElements == indexPath.row + downloadOffset {
+            mainModel.loadMore()
         }
-        if sections[0].numberOfObjects == indexPath.row+5 { // make isDownloading flag
-            downloader?.downloadMore()
-        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+//        if let news = mainModel?.object(at: indexPath) {
+//            if (news.content == nil) {
+//                mainModel?.loadContent(id: news.id!)
+//            }
+//        }
     }
 }
 

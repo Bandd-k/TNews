@@ -112,7 +112,7 @@ class CoreDataStack {
     
     
     
-    public func performSave(context:NSManagedObjectContext,completionHandler: (()-> Void)? ){
+    public func performSave(context:NSManagedObjectContext,completionHandler: @escaping (String?) -> Void ){
         if context.hasChanges{
             print("context saved")
             context.perform { [weak self] in
@@ -126,14 +126,14 @@ class CoreDataStack {
                     self?.performSave(context: parent, completionHandler: completionHandler)
                 }
                 else{
-                    completionHandler?()
+                    completionHandler(nil)
                 }
                 
             }
             
         }
         else{
-            completionHandler?()
+            completionHandler(nil)// OR ADD ERROR?
         }
     }
     
