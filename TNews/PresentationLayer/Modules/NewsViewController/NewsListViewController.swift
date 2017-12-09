@@ -10,15 +10,18 @@ import UIKit
 
 class NewsListViewController: UIViewController {
     @IBOutlet weak var placeHolderText: UILabel!
-    
     @IBOutlet weak var placeHolder: UIImageView!
     
     @IBOutlet weak var newsTableView: UITableView!
     private let refreshControl = UIRefreshControl()
-    var mainModel: IMainModel!
-    let downloadOffset = 5
+    private var mainModel: IMainModel!
+    private let downloadOffset = 1 // set position before the end when we start download a new batch of news
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureController()
+    }
+    
+    func configureController(){
         mainModel = MainModel(tableView: newsTableView)
         newsTableView.dataSource = self
         newsTableView.delegate = self
@@ -30,7 +33,7 @@ class NewsListViewController: UIViewController {
             newsTableView.addSubview(refreshControl)
         }
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        refreshControl.attributedTitle = NSAttributedString(string: "Looking for something new", attributes: nil)
+        refreshControl.attributedTitle = NSAttributedString(string: "refreshing", attributes: nil)
     }
     
     @objc private func refreshData(){
@@ -38,8 +41,7 @@ class NewsListViewController: UIViewController {
     }
 
      // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? NewsListTableViewCell {
             let contentViewController = segue.destination as! ContentViewController
@@ -76,15 +78,9 @@ extension NewsListViewController: IMainModelDelegate {
 // MARK: - UITableViewDataSource
 extension NewsListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-//        guard let frc = dataProvider?.fetchedResultsController, let sectionsCount =
-//            frc.sections?.count else {
-//                return 0
-//        }
-//        return sectionsCount
+        return 1 // aplication has one section always!
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(mainModel.numberOfElements)
         if  mainModel.numberOfElements == 0 {
             placeHolder.isHidden = false
             placeHolderText.isHidden = false
@@ -98,14 +94,10 @@ extension NewsListViewController: UITableViewDataSource {
         return mainModel.numberOfElements
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCell") as! NewsListTableViewCell
-        if let news = mainModel?.object(at: indexPath) {
-            cell.configure(from: news)
-        }
+        cell.configure(from: mainModel.object(at: indexPath))
         return cell
-        
     }
 
 }
@@ -113,19 +105,9 @@ extension NewsListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension NewsListViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
-        if mainModel.numberOfElements == indexPath.row + downloadOffset {
+        if mainModel.numberOfElements <= indexPath.row + downloadOffset {
             mainModel.loadMore()
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-//        if let news = mainModel?.object(at: indexPath) {
-//            if (news.content == nil) {
-//                mainModel?.loadContent(id: news.id!)
-//            }
-//        }
     }
 }
 

@@ -10,8 +10,7 @@ import Foundation
 
 class RequestSender: IRequestSender {
     
-    let session = URLSession.shared
-    
+    private let session = URLSession.shared // maybe change on default session!
     func send<T>(config: RequestConfig<T>, completionHandler: @escaping (Result<T>) -> Void) {
         
         guard let urlRequest = config.request else {

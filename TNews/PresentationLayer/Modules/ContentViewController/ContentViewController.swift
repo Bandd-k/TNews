@@ -33,6 +33,14 @@ class ContentViewController: UIViewController,ContentViewDelegate {
 
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) { // fix of the strange behavior of textView with scrolling text down
+        textView.isScrollEnabled = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        textView.isScrollEnabled = true
+    }
+
     
     func updateContent(text: String){
         DispatchQueue.main.async {

@@ -18,7 +18,6 @@
 		5086AFAE1FD1ED830088A5FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5086AFAC1FD1ED830088A5FD /* LaunchScreen.storyboard */; };
 		5086AFB81FD2DEBE0088A5FD /* News+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFB71FD2DEBE0088A5FD /* News+CoreData.swift */; };
 		5086AFBA1FD2EA540088A5FD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFB91FD2EA540088A5FD /* CoreDataStack.swift */; };
-		5086AFBE1FD318CD0088A5FD /* NewsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFBD1FD318CD0088A5FD /* NewsDataProvider.swift */; };
 		50A69D9D1FD49A37004915B2 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A69D9C1FD49A37004915B2 /* MainModel.swift */; };
 		50A69D9F1FD49E31004915B2 /* ListDownloaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A69D9E1FD49E31004915B2 /* ListDownloaderService.swift */; };
 		50A69DA11FD49EA9004915B2 /* ContentDownloaderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A69DA01FD49EA9004915B2 /* ContentDownloaderService.swift */; };
@@ -46,7 +45,6 @@
 		5086AFAF1FD1ED830088A5FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5086AFB71FD2DEBE0088A5FD /* News+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+CoreData.swift"; sourceTree = "<group>"; };
 		5086AFB91FD2EA540088A5FD /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		5086AFBD1FD318CD0088A5FD /* NewsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDataProvider.swift; sourceTree = "<group>"; };
 		50A69D9C1FD49A37004915B2 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		50A69D9E1FD49E31004915B2 /* ListDownloaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDownloaderService.swift; sourceTree = "<group>"; };
 		50A69DA01FD49EA9004915B2 /* ContentDownloaderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDownloaderService.swift; sourceTree = "<group>"; };
@@ -75,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				5086AF9F1FD1ED830088A5FD /* TNews */,
+				5086AFA01FD1ED830088A5FD /* AppDelegate.swift */,
 				5086AF9E1FD1ED830088A5FD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,22 +89,12 @@
 		5086AF9F1FD1ED830088A5FD /* TNews */ = {
 			isa = PBXGroup;
 			children = (
-				5086AFA01FD1ED830088A5FD /* AppDelegate.swift */,
-				5086AFA21FD1ED830088A5FD /* NewsListViewController.swift */,
-				500CC63B1FD7355D005B7BE3 /* NewsListTableViewCell.swift */,
-				50BAB0D21FD816400095A172 /* ContentViewController.swift */,
-				50A69D9C1FD49A37004915B2 /* MainModel.swift */,
-				5086AFA41FD1ED830088A5FD /* Main.storyboard */,
+				50D6B6081FDC5BD4007AB487 /* PresentationLayer */,
 				50A69DB21FD4AE79004915B2 /* ServiceLayer */,
 				50A69DB41FD4AE9F004915B2 /* CoreLayer */,
 				5086AFAA1FD1ED830088A5FD /* Assets.xcassets */,
 				5086AFAC1FD1ED830088A5FD /* LaunchScreen.storyboard */,
 				5086AFAF1FD1ED830088A5FD /* Info.plist */,
-				5086AFA71FD1ED830088A5FD /* TNews.xcdatamodeld */,
-				5086AFB71FD2DEBE0088A5FD /* News+CoreData.swift */,
-				50D2B9A11FD9B19800BD7533 /* Counter+News.swift */,
-				5086AFB91FD2EA540088A5FD /* CoreDataStack.swift */,
-				5086AFBD1FD318CD0088A5FD /* NewsDataProvider.swift */,
 			);
 			path = TNews;
 			sourceTree = "<group>";
@@ -150,6 +139,7 @@
 		50A69DB41FD4AE9F004915B2 /* CoreLayer */ = {
 			isa = PBXGroup;
 			children = (
+				50D6B60D1FDC5C8A007AB487 /* CoreDataBase */,
 				50A69DB81FD4AF5A004915B2 /* Storage */,
 				50A69DB61FD4AF3A004915B2 /* Networking */,
 			);
@@ -172,6 +162,53 @@
 				500662BD1FD5F5A300EE69B0 /* StorageManager.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		50D6B6081FDC5BD4007AB487 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				50D6B6091FDC5BE0007AB487 /* Modules */,
+				5086AFA41FD1ED830088A5FD /* Main.storyboard */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		50D6B6091FDC5BE0007AB487 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				50D6B60A1FDC5BFE007AB487 /* NewsViewController */,
+				50D6B60C1FDC5C22007AB487 /* ContentViewController */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		50D6B60A1FDC5BFE007AB487 /* NewsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5086AFA21FD1ED830088A5FD /* NewsListViewController.swift */,
+				500CC63B1FD7355D005B7BE3 /* NewsListTableViewCell.swift */,
+				50A69D9C1FD49A37004915B2 /* MainModel.swift */,
+			);
+			path = NewsViewController;
+			sourceTree = "<group>";
+		};
+		50D6B60C1FDC5C22007AB487 /* ContentViewController */ = {
+			isa = PBXGroup;
+			children = (
+				50BAB0D21FD816400095A172 /* ContentViewController.swift */,
+			);
+			path = ContentViewController;
+			sourceTree = "<group>";
+		};
+		50D6B60D1FDC5C8A007AB487 /* CoreDataBase */ = {
+			isa = PBXGroup;
+			children = (
+				5086AFB91FD2EA540088A5FD /* CoreDataStack.swift */,
+				50D2B9A11FD9B19800BD7533 /* Counter+News.swift */,
+				5086AFB71FD2DEBE0088A5FD /* News+CoreData.swift */,
+				5086AFA71FD1ED830088A5FD /* TNews.xcdatamodeld */,
+			);
+			path = CoreDataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +297,6 @@
 				50A69DA51FD4A0B7004915B2 /* ContentParser.swift in Sources */,
 				500CC63C1FD7355D005B7BE3 /* NewsListTableViewCell.swift in Sources */,
 				5086AFA31FD1ED830088A5FD /* NewsListViewController.swift in Sources */,
-				5086AFBE1FD318CD0088A5FD /* NewsDataProvider.swift in Sources */,
 				50A69D9D1FD49A37004915B2 /* MainModel.swift in Sources */,
 				50A69D9F1FD49E31004915B2 /* ListDownloaderService.swift in Sources */,
 				5086AFBA1FD2EA540088A5FD /* CoreDataStack.swift in Sources */,
@@ -410,7 +446,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = luckyass.TNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -426,7 +462,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = luckyass.TNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

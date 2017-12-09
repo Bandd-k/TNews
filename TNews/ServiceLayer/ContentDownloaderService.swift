@@ -15,7 +15,7 @@ protocol IContentDownloaderService{
 
 class ContentDownloaderService: IContentDownloaderService {
     
-    let requestSender: IRequestSender
+    private let requestSender: IRequestSender
     
     init(requestSender: IRequestSender) {
         self.requestSender = requestSender

@@ -15,7 +15,7 @@ protocol IListDownloaderService{
 
 class ListDownloaderService: IListDownloaderService {
     
-    let requestSender: IRequestSender
+    private let requestSender: IRequestSender
     
     init(requestSender: IRequestSender) {
         self.requestSender = requestSender

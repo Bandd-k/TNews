@@ -17,7 +17,7 @@ protocol IStorageManager {
 }
 
 class StorageManager: IStorageManager {
-    let coreDataStack:CoreDataStack
+    private let coreDataStack:CoreDataStack
     init(with coreStack:CoreDataStack){
         coreDataStack = coreStack
     }

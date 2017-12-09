@@ -28,15 +28,15 @@ protocol IMainModelDelegate: class {
 
 
 class MainModel: NSObject {
-    weak var delegate: IMainModelDelegate?
-    let fetchedResultsController: NSFetchedResultsController<News>
-    let tableView: UITableView
-    let coreDataStack = CoreDataStack()
+    internal weak var delegate: IMainModelDelegate?
+    private let fetchedResultsController: NSFetchedResultsController<News>
+    private let tableView: UITableView
+    private let coreDataStack = CoreDataStack()
     //var downloadNewMode = true
-    let storageManager: IStorageManager
-    let listService: ListDownloaderService
-    let contentService: ContentDownloaderService
-    var isDonwloading = false
+    private let storageManager: IStorageManager
+    private let listService: ListDownloaderService
+    private let contentService: ContentDownloaderService
+    private var isDonwloading = false
     
     
      // MARK: - Initialization
@@ -106,7 +106,7 @@ extension MainModel : IMainModel {
         }
     }
     
-    func refresh() {
+    func refresh() { //delete old news and fetch new
         if (isDonwloading==false){
             isDonwloading = true
             let startPoint = 0
@@ -131,8 +131,6 @@ extension MainModel : IMainModel {
         
     }
     
-    
-    
     func loadMore() {
         if (isDonwloading==false){
             isDonwloading = true
@@ -156,7 +154,6 @@ extension MainModel : IMainModel {
         }
     }
     
-    
     func incrementCount(id: String) {
         self.storageManager.incrementCounter(id: id) { (error) in
             if let error = error {
@@ -167,11 +164,7 @@ extension MainModel : IMainModel {
     }
     
     
-    
 }
-
-
-
 
  // MARK: - NSFetchedResultsControllerDelegate
 extension MainModel: NSFetchedResultsControllerDelegate {
