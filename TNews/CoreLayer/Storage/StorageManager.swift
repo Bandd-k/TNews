@@ -45,8 +45,8 @@ class StorageManager: IStorageManager {
         }
         
         do {
-            let result = try context.fetch(fetchRequest)
-            let batch = 20
+            let result = try context.fetch(fetchRequest)  //delete everything  except just downloaded entites
+            let batch = elements.count
             for object in result[batch...] {
                 context.delete(object)
             }

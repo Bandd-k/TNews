@@ -42,7 +42,7 @@ class NewsListViewController: UIViewController {
 
      // MARK: - Navigation
     
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { //start download before segue and increase counter
         if let cell = sender as? NewsListTableViewCell {
             let contentViewController = segue.destination as! ContentViewController
             if let news = cell.news {
@@ -113,7 +113,7 @@ extension NewsListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let height = cellHeights[indexPath] else {
-            return CGFloat((mainModel.object(at: indexPath).name?.count)!)
+            return CGFloat((mainModel.object(at: indexPath).name?.count)!) //number of characters approximate cell height
         }
         return height
     }
