@@ -77,7 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				5086AF9F1FD1ED830088A5FD /* TNews */,
-				5086AFA01FD1ED830088A5FD /* AppDelegate.swift */,
 				5086AF9E1FD1ED830088A5FD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +98,7 @@
 				5086AFAA1FD1ED830088A5FD /* Assets.xcassets */,
 				5086AFAC1FD1ED830088A5FD /* LaunchScreen.storyboard */,
 				5086AFAF1FD1ED830088A5FD /* Info.plist */,
+				5086AFA01FD1ED830088A5FD /* AppDelegate.swift */,
 			);
 			path = TNews;
 			sourceTree = "<group>";
