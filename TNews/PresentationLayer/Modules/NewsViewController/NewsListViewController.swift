@@ -9,11 +9,10 @@
 import UIKit
 
 class NewsListViewController: UIViewController {
-    @IBOutlet weak var placeHolderText: UILabel! // use everywhere placeholder where no data yet.
-    @IBOutlet weak var placeHolder: UIImageView!
     private var cellHeights: [IndexPath : CGFloat] = [:] // prevents from tableview jumps
     @IBOutlet weak var newsTableView: UITableView!
     private let refreshControl = UIRefreshControl()
+    @IBOutlet weak var myActivityIndicator: PlaceholderActivity!
     private var mainModel: IMainModel!
     private let downloadOffset = 0 // set position before the end when we start to download a new batch of news
     override func viewDidLoad() {
@@ -33,10 +32,11 @@ class NewsListViewController: UIViewController {
             newsTableView.addSubview(refreshControl)
         }
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        refreshControl.attributedTitle = NSAttributedString(string: "refreshing", attributes: nil)
+        refreshControl.attributedTitle = NSAttributedString(string: "обновление", attributes: nil)
     }
     
     @objc private func refreshData(){
+        myActivityIndicator.isDownloading = true
         mainModel.refresh()
     }
 
@@ -62,6 +62,7 @@ extension NewsListViewController: IMainModelDelegate {
         let alert = UIAlertController(title: "Упс, проблема", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ок", style: .default) { action in
             self.stopRefresh() //small fix because of alert and pull refresh at the same time
+            self.myActivityIndicator.isDownloading = false
         })
         DispatchQueue.main.async {
             self.present(alert, animated: true)
@@ -83,14 +84,12 @@ extension NewsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if  mainModel.numberOfElements == 0 {
-            placeHolder.isHidden = false
-            placeHolderText.isHidden = false
             newsTableView.separatorStyle = .none
+            myActivityIndicator.isHidden = false
         }
         else {
-            placeHolder.isHidden = true
+            myActivityIndicator.isHidden = true
             newsTableView.separatorStyle = .singleLine
-            placeHolderText.isHidden = true
         }
         return mainModel.numberOfElements
     }
@@ -104,7 +103,7 @@ extension NewsListViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension NewsListViewController: UITableViewDelegate{
+extension NewsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cellHeights[indexPath] = cell.frame.size.height
         if mainModel.numberOfElements == indexPath.row + 1 + downloadOffset {

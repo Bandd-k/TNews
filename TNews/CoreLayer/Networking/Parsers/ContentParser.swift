@@ -15,7 +15,7 @@ class ContentParser: Parser<String> {
                 return nil
             }
             
-            guard let object = json["payload"] as? [String : Any] else { // ERROR MESSAGE HANDLE
+            guard let object = json["payload"] as? [String : Any] else {
                 return nil
             }
             guard let content = object["content"] as? String else {

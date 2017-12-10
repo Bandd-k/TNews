@@ -60,28 +60,23 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="happy" translatesAutoresizingMaskIntoConstraints="NO" id="NEz-kI-1pX">
-                                <rect key="frame" x="137" y="251" width="100" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CW9-MI-bgq" customClass="PlaceholderActivity" customModule="TNews" customModuleProvider="target">
+                                <rect key="frame" x="87.5" y="226.5" width="200" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="akf-Gf-Nmq"/>
-                                    <constraint firstAttribute="height" constant="100" id="jB9-An-bPL"/>
+                                    <constraint firstAttribute="height" constant="150" id="etk-aF-VTH"/>
+                                    <constraint firstAttribute="width" constant="200" id="gDm-Jb-fBc"/>
                                 </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пока нет данных" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNg-QQ-oCX">
-                                <rect key="frame" x="112.5" y="359" width="150" height="23"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isDownloading" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="h0a-8V-du1" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="2a0-al-C78"/>
                             <constraint firstItem="h0a-8V-du1" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7UX-AA-GLo"/>
-                            <constraint firstItem="cNg-QQ-oCX" firstAttribute="centerX" secondItem="NEz-kI-1pX" secondAttribute="centerX" id="93y-fd-2wM"/>
-                            <constraint firstItem="NEz-kI-1pX" firstAttribute="centerX" secondItem="h0a-8V-du1" secondAttribute="centerX" id="Ach-lU-h4L"/>
-                            <constraint firstItem="cNg-QQ-oCX" firstAttribute="top" secondItem="NEz-kI-1pX" secondAttribute="bottom" constant="8" id="J72-Y7-uso"/>
-                            <constraint firstItem="NEz-kI-1pX" firstAttribute="centerY" secondItem="h0a-8V-du1" secondAttribute="centerY" id="UGZ-hr-gCL"/>
+                            <constraint firstItem="CW9-MI-bgq" firstAttribute="centerY" secondItem="h0a-8V-du1" secondAttribute="centerY" id="8fU-pg-gCi"/>
+                            <constraint firstItem="CW9-MI-bgq" firstAttribute="centerX" secondItem="h0a-8V-du1" secondAttribute="centerX" id="Q9b-po-sEz"/>
                             <constraint firstItem="h0a-8V-du1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ibS-IK-6GP"/>
                             <constraint firstItem="h0a-8V-du1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nRM-y8-Yv8"/>
                         </constraints>
@@ -89,9 +84,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="News" largeTitleDisplayMode="always" id="u13-cv-Xsz"/>
                     <connections>
+                        <outlet property="myActivityIndicator" destination="CW9-MI-bgq" id="9MX-DU-gnv"/>
                         <outlet property="newsTableView" destination="h0a-8V-du1" id="UAD-31-Bd2"/>
-                        <outlet property="placeHolder" destination="NEz-kI-1pX" id="vi1-kD-HR3"/>
-                        <outlet property="placeHolderText" destination="cNg-QQ-oCX" id="sBi-EZ-1TW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -112,36 +106,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="happy" translatesAutoresizingMaskIntoConstraints="NO" id="uJK-Aa-T6r">
-                                <rect key="frame" x="137" y="251.5" width="100" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPN-XT-K8V" customClass="PlaceholderActivity" customModule="TNews" customModuleProvider="target">
+                                <rect key="frame" x="87" y="226.5" width="200" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="6SE-a3-MYq"/>
-                                    <constraint firstAttribute="width" constant="100" id="phb-2f-Lwz"/>
+                                    <constraint firstAttribute="width" constant="200" id="9sQ-yc-O5t"/>
+                                    <constraint firstAttribute="height" constant="150" id="U2P-ci-Wnm"/>
                                 </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пока нет описания" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CtR-I6-5NB">
-                                <rect key="frame" x="103" y="359" width="169" height="23"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isDownloading" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="uJK-Aa-T6r" firstAttribute="centerY" secondItem="kVW-tm-cZ3" secondAttribute="centerY" id="9fS-VW-eEM"/>
+                            <constraint firstItem="zPN-XT-K8V" firstAttribute="centerX" secondItem="pc3-Eh-SF3" secondAttribute="centerX" id="7mj-UY-G7K"/>
                             <constraint firstItem="pc3-Eh-SF3" firstAttribute="bottom" secondItem="kVW-tm-cZ3" secondAttribute="bottom" id="AZw-4k-jAD"/>
                             <constraint firstItem="pc3-Eh-SF3" firstAttribute="leading" secondItem="kVW-tm-cZ3" secondAttribute="leading" id="Hph-xt-ilc"/>
-                            <constraint firstItem="CtR-I6-5NB" firstAttribute="centerX" secondItem="uJK-Aa-T6r" secondAttribute="centerX" id="Qne-uK-cZD"/>
-                            <constraint firstItem="CtR-I6-5NB" firstAttribute="top" secondItem="uJK-Aa-T6r" secondAttribute="bottom" constant="7.5" id="RDM-lU-Xx4"/>
                             <constraint firstItem="pc3-Eh-SF3" firstAttribute="top" secondItem="kVW-tm-cZ3" secondAttribute="top" id="dib-5f-HJd"/>
                             <constraint firstItem="pc3-Eh-SF3" firstAttribute="trailing" secondItem="kVW-tm-cZ3" secondAttribute="trailing" id="eCs-TY-NeV"/>
-                            <constraint firstItem="uJK-Aa-T6r" firstAttribute="centerX" secondItem="kVW-tm-cZ3" secondAttribute="centerX" id="ktj-6J-cxy"/>
+                            <constraint firstItem="zPN-XT-K8V" firstAttribute="centerY" secondItem="pc3-Eh-SF3" secondAttribute="centerY" id="u5X-Cc-O4I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kVW-tm-cZ3"/>
                     </view>
                     <connections>
-                        <outlet property="placeHolder" destination="uJK-Aa-T6r" id="v1F-3v-6WG"/>
-                        <outlet property="placeHolderText" destination="CtR-I6-5NB" id="ODk-o6-Vdd"/>
+                        <outlet property="myActivityIndicator" destination="zPN-XT-K8V" id="0oY-c1-MJ1"/>
                         <outlet property="textView" destination="pc3-Eh-SF3" id="yyv-nd-FqY"/>
                     </connections>
                 </viewController>
@@ -167,8 +156,30 @@
             </objects>
             <point key="canvasLocation" x="-308" y="134"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="2XP-sZ-e0G">
+            <objects>
+                <viewController id="PnS-bk-mtS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XrT-2F-OYj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VuC-zj-wAU" customClass="PlaceholderActivity" customModule="TNews" customModuleProvider="target">
+                                <rect key="frame" x="67" y="85" width="218" height="209"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isDownloading" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="m1E-PF-kiz"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RYo-Zm-4e1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-295.19999999999999" y="1001.649175412294"/>
+        </scene>
     </scenes>
-    <resources>
-        <image name="happy" width="512" height="512"/>
-    </resources>
 </document>

@@ -16,7 +16,7 @@ protocol IMainModel {
     func loadMore()
     func refresh()
     func object(at index: IndexPath) -> News
-    func loadContent(id:String,completion: @escaping ((String) -> Void))
+    func loadContent(id:String,completion: @escaping ((String?) -> Void))
     func incrementCount(id:String)
 }
 
@@ -69,7 +69,6 @@ class MainModel: NSObject {
 
 extension MainModel : IMainModel {
     var numberOfElements: Int {
-        
         guard let sections = fetchedResultsController.sections else {
             return 0
         }
@@ -80,12 +79,12 @@ extension MainModel : IMainModel {
         return  fetchedResultsController.object(at: index)
     }
     
-    func loadContent(id:String,completion:@escaping ((String) -> Void)){
+    func loadContent(id:String,completion:@escaping ((String?) -> Void)){
         contentService.downloadContent(id: id) {[weak self] (content, error) in
             guard let strongSelf = self else { return }
-            if let error = error { // SELF CAPTURING CHECK!!!
-                //self.isDonwloading = false
+            if let error = error {
                 strongSelf.delegate?.show(error: error)
+                completion(nil)
                 return
             }
             if let content = content {
@@ -94,6 +93,7 @@ extension MainModel : IMainModel {
                     guard let strongSelf = self else { return }
                     if let error = error {
                         strongSelf.delegate?.show(error: error)
+                        completion(nil)
                         return
                     }
                 }
@@ -101,15 +101,14 @@ extension MainModel : IMainModel {
         }
     }
     
-    func refresh() { //delete old news and fetch new
+    func refresh() { // delete old news and fetch new
         if (isDonwloading==false){
             isDonwloading = true
             let startPoint = 0
             listService.downloadList(from: startPoint) {[weak self] (newsList, error) in
                 guard let strongSelf = self else { return }
-                if let error = error { // SELF CAPTURING CHECK!!!
+                if let error = error {
                     strongSelf.isDonwloading = false
-                    //self.delegate?.stopRefresh()
                     strongSelf.delegate?.show(error: error)
                     return
                 }
@@ -136,7 +135,7 @@ extension MainModel : IMainModel {
             isDonwloading = true
             listService.downloadList(from: numberOfElements) {[weak self] (newsList, error) in
                 guard let strongSelf = self else { return }
-                if let error = error { // SELF CAPTURING CHECK!!!
+                if let error = error {
                     strongSelf.isDonwloading = false
                     strongSelf.delegate?.show(error: error)
                     return

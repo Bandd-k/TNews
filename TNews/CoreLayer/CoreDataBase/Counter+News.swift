@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 extension Counter {
-    static func insertCounter(with id: String,in context: NSManagedObjectContext) -> Counter?{
+    static func insertCounter(with id: String,in context: NSManagedObjectContext) -> Counter? {
         if let counter = NSEntityDescription.insertNewObject(forEntityName: "Counter", into: context) as? Counter {
             counter.id = id
             return counter

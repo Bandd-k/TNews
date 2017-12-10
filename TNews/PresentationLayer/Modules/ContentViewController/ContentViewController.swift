@@ -9,25 +9,22 @@
 import UIKit
 
 protocol ContentViewDelegate: class {
-    func updateContent(text: String)
+    func updateContent(text: String?)
 }
 
 class ContentViewController: UIViewController, ContentViewDelegate {
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var placeHolder: UIImageView!
-    @IBOutlet weak var placeHolderText: UILabel!
     var news: News?
+    @IBOutlet weak var myActivityIndicator: PlaceholderActivity!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if let txt = news?.content {
             textView.text = txt
-            self.placeHolder.isHidden = true
-            self.placeHolderText.isHidden = true
+            self.myActivityIndicator.isHidden = true
         }
         else {
-            self.placeHolder.isHidden = false
-            self.placeHolderText.isHidden = false
+            self.myActivityIndicator.isHidden = false
         }
 
         // Do any additional setup after loading the view.
@@ -41,11 +38,15 @@ class ContentViewController: UIViewController, ContentViewDelegate {
     }
 
     
-    func updateContent(text: String){
+    func updateContent(text: String?){
         DispatchQueue.main.async {
-            self.textView.text = text 
-            self.placeHolder.isHidden = true
-            self.placeHolderText.isHidden = true
+            if let txt = text {
+                self.textView.text = txt
+                self.myActivityIndicator.isHidden = true
+            }
+            else {
+                self.myActivityIndicator.isDownloading = false
+            }
         }
     }
 }

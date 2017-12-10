@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceholderActivity" customModule="TNews" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="V4b-Rv-jOJ" id="DDS-Df-V4q"/>
+                <outlet property="textLabel" destination="35R-Tf-luX" id="Nir-AC-auv"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="150"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="happy" translatesAutoresizingMaskIntoConstraints="NO" id="B41-tx-hkU">
+                    <rect key="frame" x="50" y="0.0" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="ofT-mh-8Vc"/>
+                        <constraint firstAttribute="width" constant="100" id="w3D-li-2Xc"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Загрузка Данных" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35R-Tf-luX">
+                    <rect key="frame" x="24" y="108" width="152.5" height="23"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="V4b-Rv-jOJ">
+                    <rect key="frame" x="106" y="27" width="20" height="20"/>
+                </activityIndicatorView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="B41-tx-hkU" firstAttribute="top" secondItem="V4b-Rv-jOJ" secondAttribute="bottom" constant="-47" id="7vA-be-rOY"/>
+                <constraint firstItem="B41-tx-hkU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="IUB-Ek-vks"/>
+                <constraint firstItem="B41-tx-hkU" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="JoO-vH-jPm"/>
+                <constraint firstItem="35R-Tf-luX" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Kqu-Ci-YRA"/>
+                <constraint firstItem="35R-Tf-luX" firstAttribute="top" secondItem="B41-tx-hkU" secondAttribute="bottom" constant="8" id="SIo-Qn-0lt"/>
+                <constraint firstItem="V4b-Rv-jOJ" firstAttribute="leading" secondItem="B41-tx-hkU" secondAttribute="trailing" constant="-44" id="zZn-3x-OFd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="happy" width="512" height="512"/>
+    </resources>
+</document>

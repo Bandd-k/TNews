@@ -10,6 +10,8 @@
 		500662BE1FD5F5A300EE69B0 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500662BD1FD5F5A300EE69B0 /* StorageManager.swift */; };
 		500CC63C1FD7355D005B7BE3 /* NewsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500CC63B1FD7355D005B7BE3 /* NewsListTableViewCell.swift */; };
 		501C8BEF1FD4B7A800E5A5D7 /* RequestsConfigFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501C8BEE1FD4B7A800E5A5D7 /* RequestsConfigFactory.swift */; };
+		502781F31FDD856300C50C0C /* PlaceholderActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502781F21FDD856300C50C0C /* PlaceholderActivity.swift */; };
+		502781F51FDD857B00C50C0C /* PlaceholderActivity.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502781F41FDD857B00C50C0C /* PlaceholderActivity.xib */; };
 		5086AFA11FD1ED830088A5FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFA01FD1ED830088A5FD /* AppDelegate.swift */; };
 		5086AFA31FD1ED830088A5FD /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5086AFA21FD1ED830088A5FD /* NewsListViewController.swift */; };
 		5086AFA61FD1ED830088A5FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5086AFA41FD1ED830088A5FD /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 		500662BD1FD5F5A300EE69B0 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		500CC63B1FD7355D005B7BE3 /* NewsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListTableViewCell.swift; sourceTree = "<group>"; };
 		501C8BEE1FD4B7A800E5A5D7 /* RequestsConfigFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsConfigFactory.swift; sourceTree = "<group>"; };
+		502781F21FDD856300C50C0C /* PlaceholderActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderActivity.swift; sourceTree = "<group>"; };
+		502781F41FDD857B00C50C0C /* PlaceholderActivity.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderActivity.xib; sourceTree = "<group>"; };
 		5086AF9D1FD1ED830088A5FD /* TNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5086AFA01FD1ED830088A5FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5086AFA21FD1ED830088A5FD /* NewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewController.swift; sourceTree = "<group>"; };
@@ -164,9 +168,19 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		50CD32BD1FDD9EC100D5736C /* PlaceHolderActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				502781F21FDD856300C50C0C /* PlaceholderActivity.swift */,
+				502781F41FDD857B00C50C0C /* PlaceholderActivity.xib */,
+			);
+			path = PlaceHolderActivityView;
+			sourceTree = "<group>";
+		};
 		50D6B6081FDC5BD4007AB487 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				50CD32BD1FDD9EC100D5736C /* PlaceHolderActivityView */,
 				50D6B6091FDC5BE0007AB487 /* Modules */,
 				5086AFA41FD1ED830088A5FD /* Main.storyboard */,
 			);
@@ -270,6 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502781F51FDD857B00C50C0C /* PlaceholderActivity.xib in Resources */,
 				5086AFAE1FD1ED830088A5FD /* LaunchScreen.storyboard in Resources */,
 				5086AFAB1FD1ED830088A5FD /* Assets.xcassets in Resources */,
 				5086AFA61FD1ED830088A5FD /* Main.storyboard in Resources */,
@@ -287,6 +302,7 @@
 				50D2B9A21FD9B19800BD7533 /* Counter+News.swift in Sources */,
 				50A69DA31FD49F49004915B2 /* ListParser.swift in Sources */,
 				50A69DA11FD49EA9004915B2 /* ContentDownloaderService.swift in Sources */,
+				502781F31FDD856300C50C0C /* PlaceholderActivity.swift in Sources */,
 				50A69DA91FD4AA38004915B2 /* Parser.swift in Sources */,
 				50A69DA71FD4A61A004915B2 /* IRequestSender.swift in Sources */,
 				50A69DB11FD4AE4D004915B2 /* RequestSender.swift in Sources */,

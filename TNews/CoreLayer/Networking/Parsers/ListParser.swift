@@ -23,7 +23,7 @@ class ListParser: Parser<[NewsApiModel]>{
                 return nil
             }
             
-            guard let feed = json["payload"] as? [[String : Any]] else { // ERROR MESSAGE HANDLE
+            guard let feed = json["payload"] as? [[String : Any]] else { 
                 return nil
             }
             var news = [NewsApiModel]()
