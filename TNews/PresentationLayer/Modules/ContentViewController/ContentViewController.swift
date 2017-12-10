@@ -12,13 +12,12 @@ protocol ContentViewDelegate: class {
     func updateContent(text: String)
 }
 
-class ContentViewController: UIViewController,ContentViewDelegate {
+class ContentViewController: UIViewController, ContentViewDelegate {
     @IBOutlet weak var textView: UITextView!
-    
     @IBOutlet weak var placeHolder: UIImageView!
-    
     @IBOutlet weak var placeHolderText: UILabel!
     var news: News?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let txt = news?.content {
@@ -44,7 +43,7 @@ class ContentViewController: UIViewController,ContentViewDelegate {
     
     func updateContent(text: String){
         DispatchQueue.main.async {
-            self.textView.text = text // CHECK CAPUTRING
+            self.textView.text = text 
             self.placeHolder.isHidden = true
             self.placeHolderText.isHidden = true
         }

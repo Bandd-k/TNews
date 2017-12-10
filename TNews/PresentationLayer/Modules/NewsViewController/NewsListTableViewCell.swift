@@ -13,7 +13,6 @@ class NewsListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     var news :News?
-    weak var delegate: ContentViewDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,11 +23,10 @@ class NewsListTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     func configure(from element: News){
         counterLabel.text = "\(element.count?.counter ?? 0)"
         nameLabel.text = element.text
         news = element
-        
     }
-
 }

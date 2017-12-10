@@ -27,7 +27,7 @@ class StorageManager: IStorageManager {
             return
         }
         for element in elements {
-            News.findOrInsertNews(with: element.id, name: element.name, text: element.text,date: element.date, in: context)
+            _ = News.findOrInsertNews(with: element.id, name: element.name, text: element.text,date: element.date, in: context)
         }
         coreDataStack.performSave(context: context, completionHandler: completionHandler)
     }
@@ -62,7 +62,7 @@ class StorageManager: IStorageManager {
             return
         }
         guard let news = News.findNews(with: id, in: context) else {
-            completionHandler("no such element in base")
+            completionHandler("no such element in the base")
             return
         }
         news.content = content
@@ -75,7 +75,7 @@ class StorageManager: IStorageManager {
             return
         }
         guard let news = News.findNews(with: id, in: context) else {
-            completionHandler("no such element in base")
+            completionHandler("no such element in the base")
             return
         }
         news.count?.counter += 1
@@ -84,5 +84,3 @@ class StorageManager: IStorageManager {
     }
     
 }
-
-

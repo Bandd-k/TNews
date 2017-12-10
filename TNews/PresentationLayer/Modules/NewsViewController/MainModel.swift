@@ -25,14 +25,11 @@ protocol IMainModelDelegate: class {
     func stopRefresh()
 }
 
-
-
 class MainModel: NSObject {
     internal weak var delegate: IMainModelDelegate?
     private let fetchedResultsController: NSFetchedResultsController<News>
-    private let tableView: UITableView
+    private unowned let tableView: UITableView
     private let coreDataStack = CoreDataStack()
-    //var downloadNewMode = true
     private let storageManager: IStorageManager
     private let listService: ListDownloaderService
     private let contentService: ContentDownloaderService
@@ -63,9 +60,6 @@ class MainModel: NSObject {
         } catch {
             self.delegate?.show(error: "Error fetching: \(error)")
         }
-//        if (numberOfElements == 0) {
-//            loadMore()
-//        }
         refresh()
     }
     
@@ -87,18 +81,19 @@ extension MainModel : IMainModel {
     }
     
     func loadContent(id:String,completion:@escaping ((String) -> Void)){
-        contentService.downloadContent(id: id) { (content, error) in
+        contentService.downloadContent(id: id) {[weak self] (content, error) in
+            guard let strongSelf = self else { return }
             if let error = error { // SELF CAPTURING CHECK!!!
                 //self.isDonwloading = false
-                self.delegate?.show(error: error)
+                strongSelf.delegate?.show(error: error)
                 return
             }
             if let content = content {
                 completion(content)
-                self.storageManager.add(content: content,id: id) { (error) in
-                    //self.isDonwloading = false
+                strongSelf.storageManager.add(content: content,id: id) {[weak self] (error) in
+                    guard let strongSelf = self else { return }
                     if let error = error {
-                        self.delegate?.show(error: error)
+                        strongSelf.delegate?.show(error: error)
                         return
                     }
                 }
@@ -110,19 +105,24 @@ extension MainModel : IMainModel {
         if (isDonwloading==false){
             isDonwloading = true
             let startPoint = 0
-            listService.downloadList(from: startPoint) { (newsList, error) in
+            listService.downloadList(from: startPoint) {[weak self] (newsList, error) in
+                guard let strongSelf = self else { return }
                 if let error = error { // SELF CAPTURING CHECK!!!
-                    self.isDonwloading = false
-                    self.delegate?.show(error: error)
+                    strongSelf.isDonwloading = false
+                    //self.delegate?.stopRefresh()
+                    strongSelf.delegate?.show(error: error)
                     return
                 }
                 if let newsList = newsList {
-                    self.storageManager.refresh(elements: newsList) { (error) in
-                        self.isDonwloading = false
-                        self.delegate?.stopRefresh()
+                    strongSelf.storageManager.refresh(elements: newsList) {[weak self] (error) in
+                        guard let strongSelf = self else { return }
+                        strongSelf.isDonwloading = false
                         if let error = error {
-                            self.delegate?.show(error: error)
+                            strongSelf.delegate?.show(error: error)
                             return
+                        }
+                        else{
+                            strongSelf.delegate?.stopRefresh()
                         }
                     }
                 }
@@ -134,18 +134,20 @@ extension MainModel : IMainModel {
     func loadMore() {
         if (isDonwloading==false){
             isDonwloading = true
-            listService.downloadList(from: numberOfElements) { (newsList, error) in
+            listService.downloadList(from: numberOfElements) {[weak self] (newsList, error) in
+                guard let strongSelf = self else { return }
                 if let error = error { // SELF CAPTURING CHECK!!!
-                    self.isDonwloading = false
-                    self.delegate?.show(error: error)
+                    strongSelf.isDonwloading = false
+                    strongSelf.delegate?.show(error: error)
                     return
                 }
                 
                 if let newsList = newsList {
-                    self.storageManager.save(elements: newsList) { (error) in
-                        self.isDonwloading = false
+                    strongSelf.storageManager.save(elements: newsList) {[weak self] (error) in
+                        guard let strongSelf = self else { return }
+                        strongSelf.isDonwloading = false
                         if let error = error {
-                            self.delegate?.show(error: error)
+                            strongSelf.delegate?.show(error: error)
                             return
                         }
                     }
@@ -155,9 +157,10 @@ extension MainModel : IMainModel {
     }
     
     func incrementCount(id: String) {
-        self.storageManager.incrementCounter(id: id) { (error) in
+        self.storageManager.incrementCounter(id: id) {[weak self] (error) in
+            guard let strongSelf = self else { return }
             if let error = error {
-                self.delegate?.show(error: error)
+                strongSelf.delegate?.show(error: error)
                 return
             }
         }
@@ -188,7 +191,7 @@ extension MainModel: NSFetchedResultsControllerDelegate {
             }
         case .insert:
             if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
+                tableView.insertRows(at: [newIndexPath], with: .none)
             }
         case .move:
             if let indexPath = indexPath {

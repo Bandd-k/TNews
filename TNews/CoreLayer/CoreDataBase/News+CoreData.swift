@@ -33,15 +33,14 @@ extension News {
         }
     }
     
-    static func insertOrUpdate(with id: String,name: String,text: String,date: Date,in context: NSManagedObjectContext) -> News? {
+    static func insertOrUpdate(with id: String,name: String,text: String,date: Date,in context: NSManagedObjectContext) {
         if let news = findNews(with: id, in: context){
             news.name = name
             news.text = text
             news.date = date
-            return news
         }
         else{
-            return insertNews(with: id, name: name, text: text, date: date, in: context)
+            _ = insertNews(with: id, name: name, text: text, date: date, in: context)
         }
     }
     
