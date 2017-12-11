@@ -9,6 +9,9 @@
 import UIKit
 
 @IBDesignable class PlaceholderActivity: UIView {
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var textLabel: UILabel!
+    
     private var view: UIView!
     @IBInspectable var isDownloading:Bool = false {
         didSet{
@@ -25,8 +28,6 @@ import UIKit
         }
     }
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var textLabel: UILabel!
     override init(frame: CGRect) {
 
         super.init(frame: CGRect(x: frame.origin.x, y: frame.origin.y, width: 200.0, height: 150.0))

@@ -10,8 +10,8 @@ import UIKit
 
 class NewsListTableViewCell: UITableViewCell {
     @IBOutlet weak var counterLabel: UILabel!
-    
     @IBOutlet weak var nameLabel: UILabel!
+    
     var news : News?
     override func awakeFromNib() {
         super.awakeFromNib()

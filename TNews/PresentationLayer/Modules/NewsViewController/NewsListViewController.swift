@@ -9,10 +9,11 @@
 import UIKit
 
 class NewsListViewController: UIViewController {
-    private var cellHeights: [IndexPath : CGFloat] = [:] // prevents from tableview jumps
     @IBOutlet weak var newsTableView: UITableView!
-    private let refreshControl = UIRefreshControl()
     @IBOutlet weak var myActivityIndicator: PlaceholderActivity!
+    
+    private let refreshControl = UIRefreshControl()
+    private var cellHeights: [IndexPath : CGFloat] = [:] // prevents from tableview jumps
     private var mainModel: IMainModel!
     private let downloadOffset = 0 // set position before the end when we start to download a new batch of news
     override func viewDidLoad() {
@@ -78,9 +79,6 @@ extension NewsListViewController: IMainModelDelegate {
 
 // MARK: - UITableViewDataSource
 extension NewsListViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 // aplication has one section always!
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if  mainModel.numberOfElements == 0 {
@@ -112,10 +110,17 @@ extension NewsListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let defaultValue = CGFloat(85.0)
         guard let height = cellHeights[indexPath] else {
-            return CGFloat((mainModel.object(at: indexPath).name?.count)!) //number of characters approximate cell height
+            if let estimated = mainModel.object(at: indexPath).name?.count {
+                return CGFloat(estimated)
+            }
+            else {
+                return defaultValue // задать где-нибудь
+            }
         }
         return height
     }
+    
 }
 

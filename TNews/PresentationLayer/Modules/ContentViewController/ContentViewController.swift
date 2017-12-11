@@ -14,8 +14,9 @@ protocol ContentViewDelegate: class {
 
 class ContentViewController: UIViewController, ContentViewDelegate {
     @IBOutlet weak var textView: UITextView!
-    var news: News?
     @IBOutlet weak var myActivityIndicator: PlaceholderActivity!
+    
+    var news: News?
     
     override func viewDidLoad() {
         super.viewDidLoad()
