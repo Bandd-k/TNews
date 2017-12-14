@@ -112,6 +112,7 @@ extension MainModel : IMainModel {
                     strongSelf.delegate?.show(error: error)
                     return
                 }
+                strongSelf.delegate?.stopRefresh()
                 if let newsList = newsList {
                     strongSelf.storageManager.refresh(elements: newsList) {[weak self] (error) in
                         guard let strongSelf = self else { return }
@@ -173,6 +174,7 @@ extension MainModel: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+        
     }
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
@@ -190,7 +192,7 @@ extension MainModel: NSFetchedResultsControllerDelegate {
             }
         case .insert:
             if let newIndexPath = newIndexPath {
-                tableView.insertRows(at: [newIndexPath], with: .none)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
         case .move:
             if let indexPath = indexPath {

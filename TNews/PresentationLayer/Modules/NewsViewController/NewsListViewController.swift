@@ -27,11 +27,7 @@ class NewsListViewController: UIViewController {
         newsTableView.delegate = self
         mainModel.delegate = self
         // Add Refresh Control to Table View
-        if #available(iOS 10.0, *) {
-            newsTableView.refreshControl = refreshControl
-        } else {
-            newsTableView.addSubview(refreshControl)
-        }
+        newsTableView.backgroundView = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         refreshControl.attributedTitle = NSAttributedString(string: "обновление", attributes: nil)
     }
@@ -116,7 +112,7 @@ extension NewsListViewController: UITableViewDelegate {
                 return CGFloat(estimated)
             }
             else {
-                return defaultValue // задать где-нибудь
+                return defaultValue
             }
         }
         return height
